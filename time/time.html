@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+
+
+    <style>
+        body {
+            background: antiquewhite;
+        }
+        .clock {
+            text-align: center;
+        }
+        .clock h1 {
+            font-size: 70px;
+            color: red;
+        }
+        .timer {
+            font-size: 70px;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <h1>DIGITAL - CLOCK</h1>
+        <div id="displaytime" class="timer">
+        </div>
+    </div>
+   
+
+    <script>
+        setInterval(showTime, 1000);
+        function showTime() {
+            var currdate = new Date();
+            var hours = currdate.getHours();
+            var minutes = currdate.getMinutes();
+            var seconds = currdate.getSeconds();
+            var div = document.getElementById("displaytime");
+            am_pm = "AM";
+        
+            hours = hours < 0 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+  
+            if (hours > 12) {
+                hours -= 12;
+                am_pm = "PM";
+            }
+            if (hours == 0) {
+                hours = 12;
+                am_pm = "AM";
+            }
+            div.innerHTML = hours + ":" + minutes + ":" + seconds +" "+ am_pm;
+        }
+
+    </script>
+</body>
+
+</html>

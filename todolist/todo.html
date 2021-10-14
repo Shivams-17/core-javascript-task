@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        button {
+            background-color: #000;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        span {
+            margin-left: 40px;
+        }
+
+        li {
+            margin-bottom: 1%;
+        }
+
+        .to-do-list {
+            text-align: center;
+            margin-bottom: 6%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="to-do-list">
+        <label for="fname">ADD TODO:</label>
+        <input type="text" name="todo" id="todolist">
+
+        <button type="submit" onclick="add()">ADD</button>
+
+        <button type="submit" onclick="remove()">DELETE</button>
+
+        <button type="submit" onclick="removeall()">DELETE ALL</button>
+    </div>
+
+    <div class="list">
+        <ol id="items"></ol>
+    </div>
+
+    <script>
+        function add() {
+            var value = document.getElementById("todolist").value;
+            var ol = document.createElement("ol");
+            var li = document.createElement("li");
+            li.innerHTML = value;
+            ol = document.getElementById("items")
+            ol.appendChild(li);
+            document.getElementById("todolist").value = "";
+            if (document.getElementById("todolist").value = "") {
+                li.innerHTML = ol.removeChild(li);
+            }
+        }
+
+
+        function remove() {
+            var listitems = document.getElementsByTagName("li");
+            var i;
+            for (i = 0; i < listitems.length; i++) {
+                var span = document.createElement("span");
+                var btn = document.createElement("button");
+                btn.innerHTML = "DELETE";
+                span.className = "close";
+                span.appendChild(btn);
+                listitems[i].appendChild(span);
+            }
+
+            // remove current item by clicking on close
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+
+        }
+
+        function removeall() {
+            // li.innerHTML = value;
+            var ol = document.getElementById("items");
+            var value = document.getElementById("todolist").value;
+            var li = document.createElement("li");
+            li.innerHTML = value;
+            ol.remove(li);
+        }
+
+    </script>
+</body>
+
+</html>
